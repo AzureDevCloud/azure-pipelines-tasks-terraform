@@ -44,12 +44,12 @@ stages:
 
   - stage: Build
     jobs: 
-    - template: build_version.yml
-    - template: build_terraform_installer.yml
-    - template: build_views_terraform_plan.yml
-    - template: build_terraform_cli.yml
-    - template: build_terraform_extension.yml
-    - template: build_terraform_templates.yml
+    - template: build/build_version.yml
+    - template: build/build_terraform_installer.yml
+    - template: build/build_views_terraform_plan.yml
+    - template: build/build_terraform_cli.yml
+    - template: build/build_terraform_extension.yml
+    - template: build/build_terraform_templates.yml
     - job: SonarQube
       steps:
       
