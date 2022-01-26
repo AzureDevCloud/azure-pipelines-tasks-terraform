@@ -52,7 +52,8 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              $projectKey = "$(System.TeamProjectId)_$(Build.Repository.Id)"
+              $projectKey = "$(System.TeamProjectId)__ef8d3191-e524-4e46-ac3d-ff78ce8de3c8:master"
+              #$projectKey = "$(System.TeamProjectId)_$(Build.Repository.Id)"
               $projectName = "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck"
               $projectVersion = "$(Build.BuildNumber)"
 
