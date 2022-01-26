@@ -62,9 +62,9 @@ stages:
               #$projectName = "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck"
               #$projectVersion = "$(Build.BuildNumber)"
 
-              Write-Host ("projectKey:     {0}" -f $(SonarQubeProjectKey))
-              Write-Host ("projectName:    {0}" -f $(SonarQubeProjectName))
-              Write-Host ("projectVersion: {0}" -f $(SonarQubeProjectVersion))
+              Write-Host "projectKey:     $(SonarQubeProjectKey)"
+              Write-Host "projectName:    $(SonarQubeProjectName)"
+              Write-Host "projectVersion: $(SonarQubeProjectVersion)"
 
         # S o n a r Q u b e - Prepare Analysis Configuration Task
         - task: SonarQubePrepare@4
@@ -72,9 +72,9 @@ stages:
             SonarQube:      DaimlerInternalSonarQube
             scannerMode:    CLI
             configMode:     manual
-            projectKey:     $(SonarQubeProjectKey)
-            projectName:    $(SonarQubeProjectName)
-            projectVersion: $(SonarQubeProjectVersion)
+            projectKey:     '$(SonarQubeProjectKey)'
+            projectName:    '$(SonarQubeProjectName)'
+            projectVersion: '$(SonarQubeProjectVersion)'
 
         # S o n a r Q u b e - Analyze Task
         - task: SonarQubeAnalyze@4
