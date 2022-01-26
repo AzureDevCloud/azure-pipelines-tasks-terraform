@@ -40,7 +40,32 @@ name: $(GitVersion.FullSemVer)
 stages:
   - template: build/build.yml
     parameters:
-      stage: rc
+      stage: Build
+
+  - stage: SonarQube
+    jobs: 
+    - job: SonarQube
+      steps:
+      
+        # S o n a r Q u b e - Prepare Analysis Configuration Task
+        - task: SonarQubePrepare@4
+          inputs:
+            SonarQube:      DaimlerInternalSonarQube
+            scannerMode:    CLI
+            configMode:     manual    
+            projectKey:     $(System.TeamProjectId)_$(Build.Repository.Id)
+            projectName:    $(System.TeamProject)-$(Build.DefinitionName)-ShellCheck
+            projectVersion: $(Build.BuildNumber)
+
+        # S o n a r Q u b e - Analyze Task
+        - task: SonarQubeAnalyze@4
+    
+        # S o n a r Q u b e - Publish Task
+        - task: SonarQubePublish@4
+          inputs:
+            pollingTimeoutSec: 300
+    
+
   #- template: publish/publish_private.yml
   #  parameters:
   #    stage: rc
