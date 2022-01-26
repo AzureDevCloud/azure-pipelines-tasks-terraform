@@ -58,7 +58,7 @@ stages:
 
               Write-Host ("projectKey:     {0}" -f $projectKey)
               Write-Host ("projectName:    {0}" -f $projectName)
-              Write-Host "projectVersion: {0}" -f $projectVersion)
+              Write-Host ("projectVersion: {0}" -f $projectVersion)
 
         # S o n a r Q u b e - Prepare Analysis Configuration Task
         - task: SonarQubePrepare@4
