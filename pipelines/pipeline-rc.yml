@@ -31,6 +31,11 @@ variables:
   tf_variables_secure_file: 4a0c36e2-bb51-41ed-87b1-2e668c64bb69
   marketplace_publisher: charleszipp
   ado_service_url: https://dev.azure.com/azure-pipelines-terraform-rc
+  # SonarQube Varibales
+  SonarQubeProjectKey: "$(System.TeamProjectId)_ef8d3191-e524-4e46-ac3d-ff78ce8de3c8:master"
+  # SonarQubeProjectKey: "$(System.TeamProjectId)_$(Build.Repository.Id)"
+  SonarQubeProjectName: "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck"
+  SonarQubeProjectVersion: "$(Build.BuildNumber)"
 
 pool:
   vmImage: ubuntu-latest
@@ -52,14 +57,14 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              $projectKey = "$(System.TeamProjectId)_ef8d3191-e524-4e46-ac3d-ff78ce8de3c8:master"
+              #$projectKey = "$(System.TeamProjectId)_ef8d3191-e524-4e46-ac3d-ff78ce8de3c8:master"
               #$projectKey = "$(System.TeamProjectId)_$(Build.Repository.Id)"
-              $projectName = "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck"
-              $projectVersion = "$(Build.BuildNumber)"
+              #$projectName = "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck"
+              #$projectVersion = "$(Build.BuildNumber)"
 
-              Write-Host ("projectKey:     {0}" -f $projectKey)
-              Write-Host ("projectName:    {0}" -f $projectName)
-              Write-Host ("projectVersion: {0}" -f $projectVersion)
+              Write-Host ("projectKey:     {0}" -f $(SonarQubeProjectKey))
+              Write-Host ("projectName:    {0}" -f $(SonarQubeProjectName))
+              Write-Host ("projectVersion: {0}" -f $(SonarQubeProjectVersion))
 
         # S o n a r Q u b e - Prepare Analysis Configuration Task
         - task: SonarQubePrepare@4
@@ -67,9 +72,9 @@ stages:
             SonarQube:      DaimlerInternalSonarQube
             scannerMode:    CLI
             configMode:     manual
-            projectKey:     $(System.TeamProjectId)_$(Build.Repository.Id)
-            projectName:    $(System.TeamProject)-$(Build.DefinitionName)-ShellCheck
-            projectVersion: $(Build.BuildNumber)
+            projectKey:     $(SonarQubeProjectKey)
+            projectName:    $(SonarQubeProjectName)
+            projectVersion: $(SonarQubeProjectVersion)
 
         # S o n a r Q u b e - Analyze Task
         - task: SonarQubeAnalyze@4
