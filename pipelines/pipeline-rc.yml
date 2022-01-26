@@ -52,9 +52,9 @@ stages:
           inputs:
             targetType: 'inline'
             script: |
-              $projectKey = "$(System.TeamProjectId)_$(Build.Repository.Id)""
-              $projectName = "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck)""
-              $projectVersion = "$(Build.BuildNumber)""
+              $projectKey = "$(System.TeamProjectId)_$(Build.Repository.Id)"
+              $projectName = "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck)"
+              $projectVersion = "$(Build.BuildNumber)"
 
               Write-Host ("projectKey:     {0}" -f $projectKey)
               Write-Host ("projectName:    {0}" -f $projectName)
