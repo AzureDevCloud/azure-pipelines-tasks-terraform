@@ -38,21 +38,17 @@ pool:
 name: $(GitVersion.FullSemVer)
 
 stages:
-  #- template: build/build.yml
-  #  parameters:
-  #    stage: Build
+  - template: build/build.yml
+    parameters:
+      stage: Build
 
-  - stage: Build
+  - stage: SonarQube
     jobs: 
-    - template: build/build_version.yml
-    - template: build/build_terraform_installer.yml
-    - template: build/build_views_terraform_plan.yml
-    - template: build/build_terraform_cli.yml
-    - template: build/build_terraform_extension.yml
-    - template: build/build_terraform_templates.yml
     - job: SonarQube
       steps:
       
+        - download: current
+
         # S o n a r Q u b e - Prepare Analysis Configuration Task
         - task: SonarQubePrepare@4
           inputs:
