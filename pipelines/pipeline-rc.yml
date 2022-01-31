@@ -72,12 +72,15 @@ stages:
         # S o n a r Q u b e - Prepare Analysis Configuration Task
         - task: SonarQubePrepare@4
           inputs:
-            SonarQube:      DaimlerInternalSonarQube
-            scannerMode:    CLI
-            configMode:     manual
-            projectKey:     '$(SonarQubeProjectKey)'
-            projectName:    '$(SonarQubeProjectName)'
-            projectVersion: '$(SonarQubeProjectVersion)'
+            SonarQube:          DaimlerInternalSonarQube
+            scannerMode:        CLI
+            configMode:         manual
+            cliProjectKey:      '$(SonarQubeProjectKey)'
+            cliProjectName:     '$(SonarQubeProjectName)'
+            cliProjectVersion:  '$(SonarQubeProjectVersion)'
+            # projectKey:         '$(SonarQubeProjectKey)'
+            # projectName:        '$(SonarQubeProjectName)'
+            # projectVersion:     '$(SonarQubeProjectVersion)'
 
         # S o n a r Q u b e - Analyze Task
         - task: SonarQubeAnalyze@4
