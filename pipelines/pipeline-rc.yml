@@ -32,8 +32,8 @@ variables:
   marketplace_publisher: charleszipp
   ado_service_url: https://dev.azure.com/azure-pipelines-terraform-rc
   # SonarQube Varibales
-  SonarQubeProjectKey: "$(System.TeamProjectId)_ef8d3191-e524-4e46-ac3d-ff78ce8de3c8:master"
-  # SonarQubeProjectKey: "$(System.TeamProjectId)_$(Build.Repository.Id)"
+  # SonarQubeProjectKey: "$(System.TeamProjectId)_ef8d3191-e524-4e46-ac3d-ff78ce8de3c8:master"
+  SonarQubeProjectKey: "$(System.TeamProjectId)_$(Build.Repository.Id)"
   SonarQubeProjectName: "$(System.TeamProject)-$(Build.DefinitionName)-ShellCheck"
   SonarQubeProjectVersion: "$(Build.BuildNumber)"
 
